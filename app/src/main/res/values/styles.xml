@@ -34,4 +34,8 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="TextAppearance.FontPath.Sans" parent="TextAppearance.AppCompat">
+        <item name="fontPath">fonts/open-sans/OpenSans-Regular.ttf</item>
+    </style>
+
 </resources>

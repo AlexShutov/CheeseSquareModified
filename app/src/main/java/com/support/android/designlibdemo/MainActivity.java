@@ -16,11 +16,10 @@
 
 package com.support.android.designlibdemo;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,10 +34,11 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * TODO
@@ -47,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private AppCompatImageView toolbarDrawerButton;
+
+    /**
+     * Initialize Calligraphy liibrary for this Activity
+     * @param newBase
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,37 +72,13 @@ public class MainActivity extends AppCompatActivity {
          */
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(false);
-        /**
-         * Setup navigation drawer's button
-         */
-//        toolbarDrawerButton = (AppCompatImageView) findViewById(R.id.toolbar_drawer_button);
-//        toolbarDrawerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mDrawerLayout.openDrawer(GravityCompat.START);
-//            }
-//        });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        if (navigationView != null) {
-//            setupDrawerContent(navigationView);
-//        }
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id§.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -101,11 +87,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.drawer_button, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
         return true;
     }
 

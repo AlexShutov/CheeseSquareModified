@@ -31,4 +31,8 @@
   <string name="menu_night_mode_night">Night (always)</string>
   <string name="menu_night_mode_auto">Auto</string>
 
+  <!--main screen string resources -->
+  <string name="ms_toolbar_name">Some app</string>
+
+
 </resources>
